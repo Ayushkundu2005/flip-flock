@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="profile">
+
+    <!-- PROFILE HEADER -->
+    <div class="profile-header">
+        <img class="profile-avatar"
+             src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}">
+
+        <div class="profile-info">
+            <h2>{{ user.username }}</h2>
+
+            <div class="profile-stats">
+                <span><strong>{{ user.posts|length }}</strong> posts</span>
+                <span><strong>{{ user.followers.count() }}</strong> followers</span>
+                <span><strong>{{ user.followed.count() }}</strong> following</span>
+            </div>
+
+            <p class="profile-bio">{{ user.bio }}</p>
+
+            {% if user == current_user %}
+                <a class="btn" href="{{ url_for('edit_profile') }}">Edit Profile</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- USER POSTS -->
+    <div class="profile-posts">
+        {% for post in user.posts %}
+            <div class="profile-post">
+                <img src="{{ url_for('static', filename='uploads/' + post.image) }}">
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

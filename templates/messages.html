@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+<div class="messages">
+
+    <h2>Messages</h2>
+
+    <div class="message-users">
+        {% for user in users %}
+            <a class="message-user"
+               href="{{ url_for('chat', username=user.username) }}">
+                <img class="avatar"
+                     src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}">
+                <span>{{ user.username }}</span>
+            </a>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

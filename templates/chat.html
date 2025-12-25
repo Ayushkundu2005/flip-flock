@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+<div class="chat">
+
+    <div class="chat-header">
+        <img class="avatar"
+             src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}">
+        <h3>{{ user.username }}</h3>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+        {% for msg in messages %}
+            <div class="chat-message {% if msg.sender_id == current_user.id %}sent{% else %}received{% endif %}">
+                <p>{{ msg.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="chat-input">
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button onclick="sendMessage({{ user.id }})">Send</button>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#ff49a1"></stop>
+      <stop offset="1" stop-color="#7c4dff"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" rx="20" fill="#0b0f13"></rect>
+  <circle cx="100" cy="75" r="36" fill="url(#g)" opacity="0.95"></circle>
+  <rect x="50" y="120" width="100" height="50" rx="10" fill="rgba(255,255,255,0.03)"></rect>
+  <text x="100" y="152" font-family="Poppins, Arial" font-size="16" fill="#cfe6ff" text-anchor="middle">FlipFlock</text>
+</svg>

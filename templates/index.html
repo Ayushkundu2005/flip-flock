@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="feed">
+
+    {% for post in posts %}
+    <div class="post-card">
+
+        <!-- HEADER -->
+        <div class="post-header">
+            <img class="avatar"
+                 src="{{ url_for('static', filename='uploads/' + post.author.profile_pic) }}">
+            <a href="{{ url_for('profile', username=post.author.username) }}">
+                {{ post.author.username }}
+            </a>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="post-image">
+            <img src="{{ url_for('static', filename='uploads/' + post.image) }}">
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="post-actions">
+            <form method="POST" action="{{ url_for('like_post', post_id=post.id) }}">
+                <button class="icon-btn">❤ {{ post.likes|length }}</button>
+            </form>
+        </div>
+
+        <!-- CAPTION -->
+        <div class="post-info">
+            <p>
+                <strong>{{ post.author.username }}</strong>
+                {{ post.caption }}
+            </p>
+        </div>
+
+        <!-- COMMENTS -->
+        <div class="comments">
+            {% for comment in post.comments %}
+                <p>
+                    <strong>{{ comment.user_id }}</strong>
+                    {{ comment.content }}
+                </p>
+            {% endfor %}
+        </div>
+
+        <!-- ADD COMMENT -->
+        <form class="comment-form"
+              method="POST"
+              action="{{ url_for('comment_post', post_id=post.id) }}">
+            <input type="text" name="comment" placeholder="Add a comment..." required>
+            <button type="submit">Post</button>
+        </form>
+
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

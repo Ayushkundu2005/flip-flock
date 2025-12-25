@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<div class="search-page">
+
+    <h2>Search results</h2>
+
+    {% if users %}
+        <div class="search-results">
+            {% for user in users %}
+                <a class="search-user"
+                   href="{{ url_for('profile', username=user.username) }}">
+                    <img class="avatar"
+                         src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}">
+                    <span>{{ user.username }}</span>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% if query %}
+            <p>No users found.</p>
+        {% endif %}
+    {% endif %}
+
+</div>
+{% endblock %}
